@@ -5,6 +5,30 @@
 (() => {
   'use strict';
 
+  // ----- page loader (1s logo intro) -----
+  document.body.classList.add('is-loading');
+  const loader = document.getElementById('pageLoader');
+  const loaderStart = performance.now();
+  const dismissLoader = () => {
+    if (!loader) {
+      document.body.classList.remove('is-loading');
+      return;
+    }
+    const elapsed = performance.now() - loaderStart;
+    const wait = Math.max(0, 1000 - elapsed);
+    setTimeout(() => {
+      loader.classList.add('is-hidden');
+      document.body.classList.remove('is-loading');
+    }, wait);
+  };
+  if (document.readyState === 'complete') {
+    dismissLoader();
+  } else {
+    window.addEventListener('load', dismissLoader, { once: true });
+    // safety: don't get stuck if load never fires (e.g., a hung resource)
+    setTimeout(dismissLoader, 4000);
+  }
+
   // ----- year in footer -----
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
