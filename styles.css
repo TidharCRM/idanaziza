@@ -966,17 +966,18 @@ p { margin: 0 0 0.7em; }
 /* ----------------- testimonials ----------------- */
 .testimonials { background: var(--bg); }
 .testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  column-count: 3;
+  column-gap: 22px;
 }
 .testimonial {
   background: var(--bg-card);
-  padding: 40px 32px 30px;
-  margin: 0;
+  padding: 32px 28px 26px;
+  margin: 0 0 22px 0;
   position: relative;
   border: 1px solid var(--line);
   transition: border-color .25s var(--ease);
+  break-inside: avoid;
+  display: block;
 }
 .testimonial:hover { border-color: var(--primary); }
 .quote-mark {
@@ -1436,7 +1437,7 @@ p { margin: 0 0 0.7em; }
   .about-visual { max-width: 480px; margin: 0 auto; }
   .method-grid { grid-template-columns: repeat(2, 1fr); }
   .process-steps { grid-template-columns: repeat(2, 1fr); }
-  .testimonial-grid { grid-template-columns: 1fr; }
+  .testimonial-grid { column-count: 2; }
   .faq-grid { grid-template-columns: 1fr; gap: 40px; }
   .faq-head { position: static; }
   .contact-grid { grid-template-columns: 1fr; gap: 50px; }
@@ -1477,6 +1478,7 @@ p { margin: 0 0 0.7em; }
   .audience-grid .audience-card:nth-child(5) { grid-column: auto; }
   .process-steps { grid-template-columns: 1fr; }
   .audience-card { padding: 32px 24px; }
+  .testimonial-grid { column-count: 1; }
 
   .cta-inner { flex-direction: column; align-items: flex-start; text-align: right; }
 
