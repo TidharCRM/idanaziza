@@ -1,0 +1,13 @@
+# Fontup source bundle — single-user license, do not redistribute
+Fontup-Bundle-*.zip
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+npm-debug.log*
