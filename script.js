@@ -163,6 +163,31 @@
     });
   }
 
+  // ----- testimonials read more -----
+  const testimonialGrid = document.getElementById('testimonialGrid');
+  const testimonialsToggle = document.getElementById('testimonialsToggle');
+  const TESTIMONIALS_INITIAL = 6;
+  if (testimonialGrid && testimonialsToggle) {
+    const items = testimonialGrid.querySelectorAll('.testimonial');
+    items.forEach((el, i) => {
+      if (i >= TESTIMONIALS_INITIAL) el.classList.add('testimonial-extra');
+    });
+    const extras = testimonialGrid.querySelectorAll('.testimonial-extra');
+    const actionsWrap = testimonialsToggle.closest('.testimonials-actions');
+    if (extras.length === 0) {
+      if (actionsWrap) actionsWrap.hidden = true;
+    } else {
+      testimonialsToggle.addEventListener('click', () => {
+        const expanded = testimonialGrid.classList.toggle('is-expanded');
+        testimonialsToggle.setAttribute('aria-expanded', String(expanded));
+        testimonialsToggle.textContent = expanded ? 'הצג פחות' : 'קרא עוד';
+        if (expanded) {
+          extras.forEach(el => el.classList.add('is-visible'));
+        }
+      });
+    }
+  }
+
   // ----- reveal-on-scroll -----
   const revealTargets = document.querySelectorAll(
     '.section-head, .method-card, .audience-card, .process-step, .testimonial, .about-copy, .about-visual, .contact-info, .contact-form, .trust-item'
